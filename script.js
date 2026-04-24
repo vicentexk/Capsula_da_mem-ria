@@ -20,46 +20,28 @@ const mensagens = {
 function mostrar(id) {
   document.getElementById("overlay").style.display = "flex";
   document.getElementById("conteudo").innerHTML = mensagens[id];
-
-  // toca música quando clicar
-  document.getElementById("musicaFundo").play();
 }
 
 function fechar() {
   document.getElementById("overlay").style.display = "none";
 }
 
-/* CARROSSEL */
-let fotos = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
-let index = 0;
+/* música automática */
+window.onload = () => {
+  let musica = document.getElementById("musicaSite");
+  musica.volume = 0.15;
+  musica.play().catch(() => {});
+};
 
-function atualizarFoto() {
-  document.getElementById("foto").src = fotos[index];
-}
-
-function proxima() {
-  index = (index + 1) % fotos.length;
-  atualizarFoto();
-}
-
-function anterior() {
-  index = (index - 1 + fotos.length) % fotos.length;
-  atualizarFoto();
-}
-
-/* CORAÇÕES */
+/* corações */
 function criarCoracao() {
-  const coracao = document.createElement("div");
-  coracao.innerHTML = ["💛","💖","✨"][Math.floor(Math.random()*3)];
-  coracao.style.position = "fixed";
-  coracao.style.top = "-20px";
-  coracao.style.left = Math.random() * window.innerWidth + "px";
-  coracao.style.fontSize = (Math.random() * 10 + 15) + "px";
-  coracao.style.animation = "cair 4s linear";
-
-  document.body.appendChild(coracao);
-
-  setTimeout(() => coracao.remove(), 4000);
+  const c = document.createElement("div");
+  c.innerHTML = ["💛","💖","✨"][Math.floor(Math.random()*3)];
+  c.style.position = "fixed";
+  c.style.top = "-20px";
+  c.style.left = Math.random()*window.innerWidth+"px";
+  c.style.animation = "cair 4s linear";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),4000);
 }
-
-setInterval(criarCoracao, 300);
+setInterval(criarCoracao,300);
