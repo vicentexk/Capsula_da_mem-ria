@@ -45,3 +45,23 @@ function criarCoracao() {
   setTimeout(()=>c.remove(),4000);
 }
 setInterval(criarCoracao,300);
+document.addEventListener("click", () => {
+  let musica = document.getElementById("musicaSite");
+
+  if (musica.paused) {
+    musica.volume = 0;
+    musica.play();
+
+    let vol = 0;
+
+    let fade = setInterval(() => {
+      if (vol < 0.15) {
+        vol += 0.01;
+        musica.volume = vol;
+      } else {
+        clearInterval(fade);
+      }
+    }, 200);
+  }
+
+}, { once: true });
