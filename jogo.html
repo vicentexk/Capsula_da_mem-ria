@@ -1,40 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Jogo 💛</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nosso joguinho 💛</title>
 
 <style>
-body { margin:0; background:black; overflow:hidden; color:white; text-align:center;}
-canvas { display:block; margin:auto; background:#222; image-rendering:pixelated;}
+body {
+  margin:0;
+  background:#111;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  color:white;
+  font-family:monospace;
+}
 
+/* GRID LABIRINTO */
+#game {
+  display:grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap:2px;
+  width:90vw;
+  max-width:400px;
+}
+
+.cell {
+  width:100%;
+  aspect-ratio:1;
+}
+
+.wall { background:#333; }
+.path { background:#222; }
+.player { background:yellow; }
+.goal { background:pink; }
+
+/* CONTROLES */
+.controls {
+  margin-top:15px;
+}
+
+.controls button {
+  width:60px;
+  height:60px;
+  font-size:20px;
+  margin:5px;
+  border-radius:10px;
+  border:none;
+  background:#ffd43b;
+}
+
+/* FINAL */
 #final {
   display:none;
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:black;
-}
-
-.creditos {
-  position:absolute;
-  bottom:-100%;
-  width:100%;
-  animation:subir 15s linear forwards;
-}
-
-@keyframes subir { to { bottom:100%; } }
-
-.fotos {
-  position:absolute;
-  right:20px;
-  top:50%;
-  transform:translateY(-50%);
+  text-align:center;
 }
 
 .fotos img {
-  width:150px;
-  height:200px;
+  width:120px;
+  height:160px;
   border-radius:10px;
 }
 </style>
@@ -42,14 +67,26 @@ canvas { display:block; margin:auto; background:#222; image-rendering:pixelated;
 
 <body>
 
-<canvas id="game" width="400" height="400"></canvas>
+<h2>Chega até ela 💛</h2>
+
+<div id="game"></div>
+
+<div class="controls">
+  <div>
+    <button onclick="move(0,-1)">⬆</button>
+  </div>
+  <div>
+    <button onclick="move(-1,0)">⬅</button>
+    <button onclick="move(1,0)">➡</button>
+  </div>
+  <div>
+    <button onclick="move(0,1)">⬇</button>
+  </div>
+</div>
 
 <div id="final">
-  <div class="creditos">
-    <h1>Noises 💛</h1>
-    <p>feito por você</p>
-    <p>pra ela 💛</p>
-  </div>
+  <h1>Noises 💛</h1>
+  <p>você chegou até mim</p>
 
   <div class="fotos">
     <img id="foto" src="foto1.jpg">
@@ -59,30 +96,60 @@ canvas { display:block; margin:auto; background:#222; image-rendering:pixelated;
 </div>
 
 <script>
-let c=document.getElementById("game");
-let ctx=c.getContext("2d");
+const mapa = [
+[1,1,1,1,1,1,1,1,1,1],
+[1,0,0,0,0,0,1,0,0,1],
+[1,0,1,1,1,0,1,0,1,1],
+[1,0,1,0,0,0,0,0,0,1],
+[1,0,1,0,1,1,1,1,0,1],
+[1,0,0,0,0,0,0,1,0,1],
+[1,1,1,1,1,1,0,1,0,1],
+[1,0,0,0,0,0,0,1,0,1],
+[1,0,1,1,1,1,1,1,0,1],
+[1,1,1,1,1,1,1,1,1,1],
+];
 
-let p={x:180,y:350};
-let goal={x:180,y:20};
+let player = {x:1,y:1};
+let goal = {x:8,y:8};
 
-document.addEventListener("keydown",e=>{
- if(e.key==="ArrowUp")p.y-=20;
- if(e.key==="ArrowDown")p.y+=20;
- if(e.key==="ArrowLeft")p.x-=20;
- if(e.key==="ArrowRight")p.x+=20;
-});
+const game = document.getElementById("game");
 
-function loop(){
- ctx.clearRect(0,0,400,400);
+function desenhar(){
+  game.innerHTML="";
+  mapa.forEach((row,y)=>{
+    row.forEach((cell,x)=>{
+      let div=document.createElement("div");
+      div.className="cell";
 
- ctx.fillStyle="yellow";
- ctx.fillRect(p.x,p.y,20,20);
+      if(cell===1) div.classList.add("wall");
+      else div.classList.add("path");
 
- ctx.fillStyle="pink";
- ctx.fillRect(goal.x,goal.y,20,20);
+      if(x===player.x && y===player.y) div.classList.add("player");
+      if(x===goal.x && y===goal.y) div.classList.add("goal");
 
- if(p.y<=40){
+      game.appendChild(div);
+    });
+  });
+}
+
+function move(dx,dy){
+  let nx=player.x+dx;
+  let ny=player.y+dy;
+
+  if(mapa[ny][nx]===0){
+    player.x=nx;
+    player.y=ny;
+    desenhar();
+  }
+
+  if(player.x===goal.x && player.y===goal.y){
+    finalizar();
+  }
+}
+
+function finalizar(){
   document.getElementById("game").style.display="none";
+  document.querySelector(".controls").style.display="none";
   document.getElementById("final").style.display="block";
 
   let m=document.getElementById("musicaFinal");
@@ -96,13 +163,9 @@ function loop(){
     i=(i+1)%fotos.length;
     document.getElementById("foto").src=fotos[i];
   },2000);
-
-  return;
- }
-
- requestAnimationFrame(loop);
 }
-loop();
+
+desenhar();
 </script>
 
 </body>
