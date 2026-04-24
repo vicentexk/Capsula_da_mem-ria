@@ -1,1 +1,64 @@
+const mensagens = {
+  agora: `ESCREVE AQUI`,
+  motivos: `ESCREVE AQUI`,
+  rir: `ESCREVE AQUI`,
+  momentos: `ESCREVE AQUI`,
+  musica: `ESCREVE AQUI`,
+  segredo: `ESCREVE AQUI`,
+  noite: `ESCREVE AQUI`,
+  pensando: `ESCREVE AQUI`,
+  saudade: `ESCREVE AQUI`,
+  triste: `ESCREVE AQUI`,
+  brava: `ESCREVE AQUI`,
+  abraco: `ESCREVE AQUI`,
+  especial: `ESCREVE AQUI`,
+  duvida: `ESCREVE AQUI`,
+  dia24: `ESCREVE AQUI`,
+  surpresa: `ESCREVE AQUI`
+};
 
+function mostrar(id) {
+  const overlay = document.getElementById("overlay");
+  const conteudo = document.getElementById("conteudo");
+
+  overlay.style.display = "flex";
+  
+  conteudo.style.opacity = 0;
+
+  setTimeout(() => {
+    conteudo.innerHTML = mensagens[id];
+    conteudo.style.opacity = 1;
+  }, 150);
+}
+
+function fechar() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+/* fechar clicando fora */
+window.onclick = function(e) {
+  const overlay = document.getElementById("overlay");
+  if (e.target === overlay) {
+    overlay.style.display = "none";
+  }
+};
+
+/* corações caindo */
+function criarCoracao() {
+  const coracao = document.createElement("div");
+  coracao.innerHTML = "💛";
+  coracao.style.position = "fixed";
+  coracao.style.top = "-20px";
+  coracao.style.left = Math.random() * window.innerWidth + "px";
+  coracao.style.fontSize = (Math.random() * 10 + 15) + "px";
+  coracao.style.opacity = Math.random();
+  coracao.style.animation = "cair 4s linear";
+
+  document.body.appendChild(coracao);
+
+  setTimeout(() => {
+    coracao.remove();
+  }, 4000);
+}
+
+setInterval(criarCoracao, 300);

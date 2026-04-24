@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Para você 💛</title>
 
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Uma coisinha pra você 💛</h1>
+<p class="sub">Você pode abrir quando quiser…</p>
+
+<!-- PRA HOJE -->
+<div class="secao">
+<h2>✨ Pra hoje</h2>
+
+<button class="botao" onclick="mostrar('agora')">💌 Abra agora</button>
+<button class="botao" onclick="mostrar('motivos')">🧠 O quanto eu gosto de você</button>
+<button class="botao" onclick="mostrar('rir')">😂 Quando quiser rir</button>
+<button class="botao" onclick="mostrar('momentos')">📸 Nossos momentos</button>
+<button class="botao" onclick="mostrar('musica')">🎧 Uma música pra você</button>
+<button class="botao" onclick="mostrar('segredo')">🤭 Uma coisa que eu nunca te falei</button>
+</div>
+
+<!-- NOITE -->
+<div class="secao">
+<h2>🌙 Pra hoje à noite</h2>
+
+<button class="botao" onclick="mostrar('noite')">🌙 Antes de dormir</button>
+<button class="botao" onclick="mostrar('pensando')">💭 Se estiver pensando em mim</button>
+</div>
+
+<!-- FUTURO -->
+<div class="secao">
+<h2>⏳ Pro futuro</h2>
+
+<button class="botao" onclick="mostrar('saudade')">💌 Quando estiver com saudade</button>
+<button class="botao" onclick="mostrar('triste')">🌧️ Quando estiver triste</button>
+<button class="botao" onclick="mostrar('brava')">😡 Quando estiver brava comigo</button>
+<button class="botao" onclick="mostrar('abraco')">🤍 Quando precisar de um abraço</button>
+<button class="botao" onclick="mostrar('especial')">🫶 Quando quiser se sentir especial</button>
+<button class="botao" onclick="mostrar('duvida')">❓ Quando duvidar de nós</button>
+<button class="botao" onclick="mostrar('dia24')">❤️ Próximo dia 24</button>
+<button class="botao" onclick="mostrar('surpresa')">🎁 Quando não estiver esperando nada</button>
+</div>
+
+<!-- POPUP -->
+<div class="overlay" id="overlay">
+  <div class="popup">
+    <span class="fechar" onclick="fechar()">✖</span>
+    <div id="conteudo"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
