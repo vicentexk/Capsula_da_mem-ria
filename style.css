@@ -6,6 +6,7 @@ body {
   justify-content: center;
 }
 
+/* CONTAINER */
 .container {
   text-align: center;
   padding: 20px;
@@ -13,6 +14,7 @@ body {
   width: 100%;
 }
 
+/* BOTÕES */
 .botoes {
   display: flex;
   flex-wrap: wrap;
@@ -36,6 +38,7 @@ button:hover {
   background: #fab005;
 }
 
+/* BOTÃO DO JOGO */
 .jogo {
   width: 90%;
   height: 70px;
@@ -43,33 +46,74 @@ button:hover {
   font-size: 16px;
 }
 
-/* popup */
+/* POPUP (CORRIGIDO) */
 .overlay {
   position: fixed;
+  top: 0;              /* ESSENCIAL */
+  left: 0;             /* ESSENCIAL */
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+
   display: none;
   justify-content: center;
   align-items: center;
+
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;       /* ESSENCIAL */
 }
 
 .popup {
   background: white;
   padding: 20px;
   border-radius: 15px;
+
   width: 85%;
   max-width: 400px;
+
+  position: relative;
+
+  animation: aparecer 0.25s ease;
 }
 
+/* BOTÃO FECHAR */
 .fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
   cursor: pointer;
+  font-size: 18px;
 }
 
-/* corações */
+/* ANIMAÇÃO POPUP */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* CORAÇÕES CAINDO */
 @keyframes cair {
   to {
     transform: translateY(100vh);
     opacity: 0;
+  }
+}
+
+/* RESPONSIVO EXTRA */
+@media (max-width: 480px) {
+  button {
+    width: 55px;
+    height: 55px;
+    font-size: 20px;
+  }
+
+  .jogo {
+    height: 65px;
+    font-size: 14px;
   }
 }
