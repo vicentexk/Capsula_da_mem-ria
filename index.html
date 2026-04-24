@@ -9,41 +9,48 @@
 
 <body>
 
+<div class="container">
+
 <h1>Uma coisinha pra você 💛</h1>
 <p class="sub">Você pode abrir quando quiser…</p>
 
-<!-- PRA HOJE -->
-<div class="secao">
-<h2>✨ Pra hoje</h2>
-
-<button class="botao" onclick="mostrar('agora')">💌 Abra agora</button>
-<button class="botao" onclick="mostrar('motivos')">🧠 O quanto eu gosto de você</button>
-<button class="botao" onclick="mostrar('rir')">😂 Quando quiser rir</button>
-<button class="botao" onclick="mostrar('momentos')">📸 Nossos momentos</button>
-<button class="botao" onclick="mostrar('musica')">🎧 Uma música pra você</button>
-<button class="botao" onclick="mostrar('segredo')">🤭 Uma coisa que eu nunca te falei</button>
+<!-- BOTÕES -->
+<h2>✨</h2>
+<div class="botoes">
+  <button onclick="mostrar('agora')" title="Abra agora">💌</button>
+  <button onclick="mostrar('motivos')" title="O quanto eu gosto de você">🧠</button>
+  <button onclick="mostrar('rir')" title="Quando quiser rir">😂</button>
+  <button onclick="mostrar('momentos')" title="Nossos momentos">📸</button>
+  <button onclick="mostrar('musica')" title="Uma música pra você">🎧</button>
+  <button onclick="mostrar('segredo')" title="Uma coisa que eu nunca te falei">🤭</button>
 </div>
 
-<!-- NOITE -->
-<div class="secao">
-<h2>🌙 Pra hoje à noite</h2>
-
-<button class="botao" onclick="mostrar('noite')">🌙 Antes de dormir</button>
-<button class="botao" onclick="mostrar('pensando')">💭 Se estiver pensando em mim</button>
+<h2>🌙</h2>
+<div class="botoes">
+  <button onclick="mostrar('noite')" title="Antes de dormir">🌙</button>
+  <button onclick="mostrar('pensando')" title="Se estiver pensando em mim">💭</button>
 </div>
 
-<!-- FUTURO -->
-<div class="secao">
-<h2>⏳ Pro futuro</h2>
+<h2>⏳</h2>
+<div class="botoes">
+  <button onclick="mostrar('saudade')" title="Quando estiver com saudade">💌</button>
+  <button onclick="mostrar('triste')" title="Quando estiver triste">🌧️</button>
+  <button onclick="mostrar('brava')" title="Quando estiver brava comigo">😡</button>
+  <button onclick="mostrar('abraco')" title="Quando precisar de um abraço">🤍</button>
+  <button onclick="mostrar('especial')" title="Quando quiser se sentir especial">🫶</button>
+  <button onclick="mostrar('duvida')" title="Quando duvidar de nós">❓</button>
+  <button onclick="mostrar('dia24')" title="Próximo dia 24">❤️</button>
+  <button onclick="mostrar('surpresa')" title="Quando não estiver esperando nada">🎁</button>
+</div>
 
-<button class="botao" onclick="mostrar('saudade')">💌 Quando estiver com saudade</button>
-<button class="botao" onclick="mostrar('triste')">🌧️ Quando estiver triste</button>
-<button class="botao" onclick="mostrar('brava')">😡 Quando estiver brava comigo</button>
-<button class="botao" onclick="mostrar('abraco')">🤍 Quando precisar de um abraço</button>
-<button class="botao" onclick="mostrar('especial')">🫶 Quando quiser se sentir especial</button>
-<button class="botao" onclick="mostrar('duvida')">❓ Quando duvidar de nós</button>
-<button class="botao" onclick="mostrar('dia24')">❤️ Próximo dia 24</button>
-<button class="botao" onclick="mostrar('surpresa')">🎁 Quando não estiver esperando nada</button>
+<!-- CARROSSEL -->
+<h2>📸 Nossas fotos</h2>
+<div class="carrossel">
+  <button onclick="anterior()">⬅</button>
+  <img id="foto" src="foto1.jpg">
+  <button onclick="proxima()">➡</button>
+</div>
+
 </div>
 
 <!-- POPUP -->
@@ -53,6 +60,9 @@
     <div id="conteudo"></div>
   </div>
 </div>
+
+<!-- MÚSICA -->
+<audio id="musicaFundo" src="musica.mp3" loop></audio>
 
 <script src="script.js"></script>
 

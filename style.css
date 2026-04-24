@@ -1,64 +1,104 @@
-const mensagens = {
-  agora: `oii`,
-  motivos: `ESCREVE AQUI`,
-  rir: `ESCREVE AQUI`,
-  momentos: `ESCREVE AQUI`,
-  musica: `ESCREVE AQUI`,
-  segredo: `ESCREVE AQUI`,
-  noite: `ESCREVE AQUI`,
-  pensando: `ESCREVE AQUI`,
-  saudade: `ESCREVE AQUI`,
-  triste: `ESCREVE AQUI`,
-  brava: `ESCREVE AQUI`,
-  abraco: `ESCREVE AQUI`,
-  especial: `ESCREVE AQUI`,
-  duvida: `ESCREVE AQUI`,
-  dia24: `ESCREVE AQUI`,
-  surpresa: `ESCREVE AQUI`
-};
-
-function mostrar(id) {
-  const overlay = document.getElementById("overlay");
-  const conteudo = document.getElementById("conteudo");
-
-  overlay.style.display = "flex";
-  
-  conteudo.style.opacity = 0;
-
-  setTimeout(() => {
-    conteudo.innerHTML = mensagens[id];
-    conteudo.style.opacity = 1;
-  }, 150);
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #fff7cc, #ffe066);
+  display: flex;
+  justify-content: center;
 }
 
-function fechar() {
-  document.getElementById("overlay").style.display = "none";
+.container {
+  text-align: center;
+  padding: 40px;
 }
 
-/* fechar clicando fora */
-window.onclick = function(e) {
-  const overlay = document.getElementById("overlay");
-  if (e.target === overlay) {
-    overlay.style.display = "none";
+h1 { font-size: 28px; }
+
+.sub {
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
+
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* BOTÕES */
+button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  font-size: 28px;
+  background: #ffd43b;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  transform: scale(1.2) rotate(5deg);
+  background: #fab005;
+}
+
+/* CARROSSEL */
+.carrossel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.carrossel img {
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* POPUP */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+  animation: aparecer 0.3s ease;
+}
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+/* ANIMAÇÕES */
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cair {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
   }
-};
-
-/* corações caindo */
-function criarCoracao() {
-  const coracao = document.createElement("div");
-  coracao.innerHTML = "💛";
-  coracao.style.position = "fixed";
-  coracao.style.top = "-20px";
-  coracao.style.left = Math.random() * window.innerWidth + "px";
-  coracao.style.fontSize = (Math.random() * 10 + 15) + "px";
-  coracao.style.opacity = Math.random();
-  coracao.style.animation = "cair 4s linear";
-
-  document.body.appendChild(coracao);
-
-  setTimeout(() => {
-    coracao.remove();
-  }, 4000);
 }
-
-setInterval(criarCoracao, 300);
